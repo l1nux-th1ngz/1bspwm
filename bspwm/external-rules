@@ -1,0 +1,12 @@
+#! /bin/sh
+
+wid=$1
+class=$2
+instance=$3
+consequences=$4
+
+wintitle=$(xprop -id "$wid" _NET_WM_NAME | cut -d\" -f2)
+case "$wintitle" in
+        *Emulator) echo state=floating ;; # Android Emulator
+        "About Mozilla Firefox") echo state=floating ;; # About Mozilla Firefox
+esac

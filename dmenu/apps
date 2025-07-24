@@ -1,0 +1,37 @@
+#!/bin/bash
+
+prog="
+Geany
+Nemo
+Terminal
+Firefox
+Brave
+Mpv
+Mpd
+Bluefish
+Silversearcher-ag
+Synaptic
+QuickThemes
+Screenshot
+Suspend
+ScreenLock
+Exit"
+
+cmd=$(dmenu -nb '#182026' -nf '#BDCED9' -sb '#325F75' -sf '#E1F4FF' -fn 'Noto Sans-11' <<< "$prog" -b)
+
+case "$cmd" in
+    "Silversearcher-ag")   exec silversearcher-ag ;;
+    "Geany")               exec geany ;;
+    "Nemo")                exec nemo ;;
+    "Terminal")            exec x-terminal-emulator ;;
+    "Firefox")             exec firefox ;;
+    "Brave")               exec brave ;;
+    "Mpv")                 exec mpv ;;
+    "Mpd")                 exec mpd ;;
+    "Bluefish")            exec bluefish ;;
+    "QuickThemes")         exec ld-theme-changer ;;
+    "Screenshot")          exec scrot ;;
+    "Suspend")             exec systemctl suspend ;;
+    "ScreenLock")          exec slock ;;
+    "Exit")                exec logout ;;
+esac

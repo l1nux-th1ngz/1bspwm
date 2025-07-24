@@ -1,0 +1,28 @@
+#!/bin/sh
+
+### Environment Setup ###
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+### Launch Autostart Script ###
+"$XDG_CONFIG_HOME/.config/bspwm/autostart.sh" 
+
+### Configure Monitors and Desktops ###
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+### Window Appearance ###
+bspc config border_width             2
+bspc config window_gap               5
+bspc config split_ratio              0.5
+bspc config focus_follows_pointer    true
+bspc config normal_border_color      "#444444"
+bspc config active_border_color      "#005577"
+bspc config focused_border_color     "#00aaff"
+bspc config borderless_monocle       true
+bspc config gapless_monocle          true
+bspc config paddingless_monocle      true
+bspc config single_monocle           false
+
+### Window Rules ###
+bspc rule -a URxvt state=floating
+bspc rule -a dropdown sticky=on state=floating hidden=on
+alacritty --class dropdown -e "zsh -i" &

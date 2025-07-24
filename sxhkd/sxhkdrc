@@ -1,0 +1,107 @@
+#################################################################
+# SUPER + ... KEYS
+#################################################################
+
+super + Return
+    terminator
+
+super + p
+    brave-browser
+    
+super + f
+    firefox
+
+super + o
+    nemo
+    
+super + g
+	geany
+
+super + d
+	~/.config/dmenu/dmenu
+	
+super + l
+	sh $HOME/.config/rofi/bin/launcher
+
+super + space
+	~/.config/rofi/scripts/rofi-familiar
+
+super + q
+    bspc node -c
+
+super + u
+      scratchpad.sh dropdown
+
+
+super + a
+	themes
+	
+#################################################################
+# CONTROL + KEYS
+#################################################################
+
+ctrl + alt + {1-9,0}
+    wmctrl -s {0-9}
+
+super + ctrl + {1-9,0}
+    wmctrl -r :ACTIVE: -t {0-9}
+    
+ctrl + alt + {Right,Left}
+    wmctrl -s $(( $(wmctrl -d | grep '*' | cut -d ' ' -f 1) {+1,-1} ))
+
+ctrl + alt + l
+    ~/.config/lock.sh
+    
+ctrl + alt + Return
+    alacritty
+
+ctrl + alt + t
+    kitty
+    
+ctrl + alt + p
+    ~/.config/scripts/picom-toggle.sh
+
+ctrl + alt + delete
+	~/.config/rofi/scripts/nakedquit
+
+    
+#################################################################
+# MULTIMEDIA KEYS
+#################################################################
+ 
+
+# PLAY
+XF86AudioPlay
+    playerctl play-pause
+
+# Next
+XF86AudioNext
+    playerctl next
+
+# Previous
+XF86AudioPrev
+    playerctl previous
+
+
+# brightness: up | down
+XF86{MonBrightnessUp,MonBrightnessDown}
+	~/.config/scripts/display/brightness {up,down}
+
+# volume: up | down | mute
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	~/.config/scripts/sound/volume {up,down,mute}
+
+super + shift + {p,m,Return}
+	bash -c ~/.config/{scripts/sound/musik,switch,/rofi/rofi}
+{Print,super + Print}
+	bash -c ~/.config/scripts/shot/{shot-now,screenshot.sh}
+
+# powermenu | info battery
+super + {_,shift +} Delete
+	bash -c ~/.config/scripts/powermenu/{powermenu.sh,info-bat.sh}
+super + alt + Delete
+	bash -c ~/.config/scripts/powermenu/battery_status.sh
+
+# Push focused window to scratchpad (background)
+super + {_,shift +} a
+	~/.config/bspwm/scratchpad.sh {switch-app,toggle-flag}
