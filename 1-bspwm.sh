@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e  # Exit on error
 
 # Update
 sudo apt update
@@ -21,7 +20,7 @@ touch ~/.Xauthority
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 cp /etc/profile ~/.profile
 
-# 👑 Take Ownership
+# Take Ownership
 sudo chown "$USER:$USER" ~/.profile ~/.xinitrc ~/.Xauthority
 
 # Dependencies
@@ -44,10 +43,10 @@ sudo apt install -y \
 # Power Manager
 sudo apt install -y xfce4-power-manager -o APT::Install-Recommends=false
 
-# ⚡ Launch Power Manager
+# Launch Power Manager
 # xfce4-power-manager &
 
-# 📁 Setup User Directories
+# Setup User Directories
 xdg-user-dirs-update
 
 echo "✅ Setup complete. Please continue to the next script."
