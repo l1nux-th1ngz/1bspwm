@@ -38,7 +38,7 @@ sudo apt install -y \
   rxvt-unicode dunst feh lxappearance mtools samba-client cifs-utils terminator \
   nemo dialog network-manager-gnome mirage avahi-daemon acpi acpid xdg-user-dir-gtk jq \
   trash-cli brightnessctl light geany-plugins bluefish silversearcher-ag fd-find vs ripgrep \
-  gvfs-backends rofi-dev polybar xq yq
+  gvfs-backends rofi-dev polybar xq yq qt5ct qt6ct
 
 # Power Manager
 sudo apt install -y xfce4-power-manager -o APT::Install-Recommends=false
