@@ -6,17 +6,6 @@ set -e
 real_user="${SUDO_USER:-$(logname)}"
 real_home="/home/$real_user"
 
-# Check if the user is root
-if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root or with sudo."
-    exit 1
-fi
-
-# Check if bspwm is installed
-if ! command -v bspwm &> /dev/null; then
-    echo "BSPWM is not installed. Please install it before running this script."
-    exit 1
-fi
 
 echo "Installing LightDM and GTK greeter..."
 sudo apt-get update
