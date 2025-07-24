@@ -50,7 +50,7 @@ run picom --config "$HOME/.config/picom/picom.conf"
 "$HOME/.config/scripts/brightness-startup.sh" &> /dev/null &
 
 ### Power Management ###
-run xfce-power-manager
+run xfce-power-manager &
 
 ### PolicyKit Agent ###
 run polkit-gnome-authentication-agent-1
