@@ -49,5 +49,5 @@ sudo apt install -y xfce4-power-manager -o APT::Install-Recommends=false
 # Setup User Directories
 xdg-user-dirs-update
 
-echo "✅ Setup complete. Please continue to the next script."
+echo "Setup complete. Please continue to the next script."
 
