@@ -48,6 +48,12 @@ sudo apt install -y xfce4-power-manager -o APT::Install-Recommends=false
 
 # Setup User Directories
 xdg-user-dirs-update
+sleep 3
+xdg-user-dirs-gtk-update
+sleep 3
+
+# Wait for everything to finsish
+wait
 
 echo "Setup complete. Please continue to the next script."
 
