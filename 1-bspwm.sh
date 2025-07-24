@@ -1,67 +1,54 @@
 #!/bin/bash
+set -e  # Exit on error
 
 # Update
 sudo apt update
 
 # Build Tools
-sudo apt install build-essential make gcc cmake bison meson ninja-build curl pkg-config wget git  gnupg xauth -y
-sudo apt install zip unzip autoconf autoconf-archive automake autotools-dev gettext autorandr bash-completions -y
-sudo apt install libtool-bin libtool pkg-config clangd intltool intltool-debian systemd-sysv sysvinit-core -y
-sudo apt install libnss-systemd libpam-systemd -y
+sudo apt install -y \
+  build-essential make gcc cmake bison meson ninja-build curl pkg-config wget git gnupg xauth \
+  zip unzip autoconf autoconf-archive automake autotools-dev gettext autorandr bash-completion \
+  libtool-bin libtool clangd intltool intltool-debian systemd-sysv sysvinit-core \
+  libnss-systemd libpam-systemd
 
-# Update
-sudo apt update
+# Display Server
+sudo apt install -y \
+  xinit xorg xorg-dev x11-utils x11-xkb-utils x11-xserver-utils \
+  xserver-xorg-core xserver-xorg-video-intel xserver-xorg-input-libinput
 
+# X Authority + Profile
 touch ~/.Xauthority
-
-# Display server
-sudo apt install xinit  xorg xorg-dev x11-utils x11-xkb-utils x11-xserver-utils  -y
-sudo apt install xserver-xorg-core xserver-xorg-video-intel xserver-xorg-input-libinput -y
-
-# Update
-sudo apt update
-
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
-cp /etc/profile  ~/.profile
+cp /etc/profile ~/.profile
 
-# Dependcies
-sudo apt install xbindkeys xbacklight xbindkeys xvkbd xinput  libx11-dev libxft-dev libxinerama-dev -y
-sudo apt install xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev -y
-sudo apt install libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev  -y
+# 👑 Take Ownership
+sudo chown "$USER:$USER" ~/.profile ~/.xinitrc ~/.Xauthority
 
-# Update
-sudo apt update
+# Dependencies
+sudo apt install -y \
+  xbindkeys xbacklight xvkbd xinput libx11-dev libxft-dev libxinerama-dev \
+  libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev \
+  libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
 
-# Processor
-sudo apt install intel-microcode -y
+# ⚙ Processor
+sudo apt install -y intel-microcode
 
-# Bspwm
-sudo apt install init bspwm sxhkd suckless-tools xdo xdotool inxi -y
-sudo apt install xautomation xsettingsd wmctrl rxvt-unicode intltool-debian -y
-sudo apt install dunst feh lxappearance mtools samba-client cifs-utils terminator -y
-sudo apt install nemo dialog feh lxappearance network-manager-gnome mirage -y
-sudo apt install dunst avahi-daemon intltool acpi acpid xdg-user-dir-gtk jq -y
-sudo apt install trash-cli brightnessctl light geany-plugins bluefish -y
-sudo apt install silversearcher-ag fd-find vs ripgrep gvfs-backends -y
-sudo apt install rofi-dev polybar xq yq -y
+# Bspwm + Utilities
+sudo apt install -y \
+  init bspwm sxhkd suckless-tools xdo xdotool inxi xautomation xsettingsd wmctrl \
+  rxvt-unicode dunst feh lxappearance mtools samba-client cifs-utils terminator \
+  nemo dialog network-manager-gnome mirage avahi-daemon acpi acpid xdg-user-dir-gtk jq \
+  trash-cli brightnessctl light geany-plugins bluefish silversearcher-ag fd-find vs ripgrep \
+  gvfs-backends rofi-dev polybar xq yq
 
-# Update
-sudo apt update
+# Power Manager
+sudo apt install -y xfce4-power-manager -o APT::Install-Recommends=false
 
-# XFCE Power no recommends
-sudo apt install xfce4-power-manager -o APT::Install-Recommends=false -y
+# ⚡ Launch Power Manager
+# xfce4-power-manager &
 
-# Update
-sudo apt update
-
-# Enable Power Manager
-xfce4-power-manager &
-
- # Enable Avahi
-sudo systemctl start avahi-daemon
-sudo systemctl enable avahi-daemon
-
- # Setup directories
+# 📁 Setup User Directories
 xdg-user-dirs-update
 
-echo "Please continue to the next script"
+echo "✅ Setup complete. Please continue to the next script."
+
